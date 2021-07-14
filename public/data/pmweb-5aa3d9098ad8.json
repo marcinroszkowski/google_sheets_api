@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pmweb-205111",
+  "private_key_id": "5aa3d9098ad8598c110d664429bfc144a31f7867",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCWzWqPM6+5kImP\nbQ7AKadsF5qC/Yaf5RQGsMH7vGlM3GVbTOfS+DuJROxQQLKpBRV39elcuWodydta\nH3gCsvcaM+wOtDnRoQZ7sh3KbVUK5mG9bILXZgWhsxUTex/TaISkCivRkpbV+Wr/\nMgZV88MihuDVZZgYFjidwhZATCOGzgrKUnpl+8co0hL2SBkxK06DOznZ1YQaZ4+8\n4bZ+WTBnAFylL/iQG25uVQ4NqNtgGoFHFqDpIrR8j4eE+OvYACSNYy5xsr8RIO/L\nm6KBOric0zCrT0Jj6EljAg//Ld4/a1Lo1O33ZzoZSnpu+NDLfpYvvjBuGwQmaFMf\nQntaHwUlAgMBAAECggEAKCjqQNql6IgaaizD6d7t7DZY+ptjt7881w9Jia3CaSqk\nf2z6q89Zo5PMTw77xVFKR1kg3YWvQeGY3eZVgnqAneTH756Fa1Mzs8tabacyJ6X0\nz4pPSeeshkR3z2lRr249LKZcxwH/01oJ6Y4767Xv+Ijs5UeZ+ogoabLfVB4ys9pQ\nguGq3UQ+JGksWaiYfesbnXyHL1njMEB/o9wQwSggW0WzoIxR0PORNp/FzEVbRieO\nK72IygUjwQWQjw5Ladwg+UlIo7Ihf9/suBIlErCHYwTGDuOuld9izHbco0rjY7w5\nxpntiJBXZTftgw5miSDwonpixPQYtCHA+lJ1Ua/efQKBgQDLwy8JIK2x1ftVJtG+\n+HTjiPGh1Hi9ZpzjIAVLrL2P7isYEq+gKaAMpGVL1LMqn1f88dT+lQbywFoTco32\nk30dYO9vUG+6NJOPeUxdHZqOHucyNLo5nx+UvrvMKyYbya41Fjm1KaGINh5oCiOW\nDFxtOpSsPaJLgoupErw1r5jh1wKBgQC9dn65lbLU4KxmBmyJj+tkB/D1y4aK6eRJ\nPybVYNekAEp3ZKKpuu86JzXZx1Mhzl/L94/OfFQ7VIutiCykRNOaAjCgiGkJFfia\n5Amy41DtsyZIipfUMMjfLlWXazDOJCG+8+vwDuKbJNI8CVXfnxd0smhwNON6z67i\nSOf3TsXpYwKBgElTU/nU6Ky2dFuQPKqcfnPjNBEohMqjwpF5VG6HGzBQZPGkx867\nK/1gq5M+V7te3CsKW7vBpV52GfQlpTC2oq+P0pocOBiqEu/ulqxrmtLKDCjlEJ7r\nxFGi0bIHVQ9q5GX2OY4YDSkXUJngDC5TBG/KRPY2t9C0ic2uEEzBhCLBAoGAKgFV\ng0vfRDczwcL22WDhLWJdWAFxqObGSD8KGxDHfoLZ/7J+JedeFqSO2ePJWJtqvcv7\nRCpoemb6ONUSILFpwKFvqofT0cHfRmf8hn7DeI/Zkwe3NcJDJsgdDd8kCPAV00I9\nMxH5x6/YNJtVQKkDCEptwULYlGfrPBwx4bDDTEUCgYB/PKwXMm9AOjBHhLoD8I17\nJRqwjn2g4fUgUN+zL5253FgwIO4PZaHkw6I12PJl0vlJyekvaGTWXwvS3QBERJTG\nWo+VG2gqN/IMh1Rpt5W4OiSb7u/IsFSyXEhpll16554jqEy+WVkcEu7gWms966xg\n/FFY7bpviZmQ04CUEimspw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "pm-rekrutacja@pmweb-205111.iam.gserviceaccount.com",
+  "client_id": "111916865476731730284",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pm-rekrutacja%40pmweb-205111.iam.gserviceaccount.com"
+}
