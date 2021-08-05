@@ -3,8 +3,8 @@
 namespace App\Command;
 
 use App\Service\GoogleApiService;
-use App\Service\ReaderService;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -29,6 +29,33 @@ class SynchronizeGoogleSheet extends Command
         $this->googleApiService = $googleApiService;
     }
 
+    protected function configure()
+    {
+        $this->addArgument('spreadsheetId', InputArgument::REQUIRED, 'The Spreadsheet ID');
+
+        parent::configure();
+    }
+
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $spreadsheetId = $input->getArgument('spreadsheetId');
+        if (is_null($spreadsheetId) || !ctype_alnum($spreadsheetId)) {
+            $output->writeln('Please provide valid Spreadsheet ID!');
+            exit();
+        }
+
+        parent::initialize($input, $output);
+    }
+
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $clearSheetStatus = $this->googleApiService->clearSheet();
