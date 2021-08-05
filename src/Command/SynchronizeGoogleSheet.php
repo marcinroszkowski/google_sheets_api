@@ -43,11 +43,12 @@ class SynchronizeGoogleSheet extends Command
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $spreadsheetId = $input->getArgument('spreadsheetId');
-        if (is_null($spreadsheetId) || !ctype_alnum($spreadsheetId)) {
+        if (is_null($spreadsheetId)) {
             $output->writeln('Please provide valid Spreadsheet ID!');
             exit();
         }
 
+        $this->googleApiService->setSpreadsheetId($spreadsheetId);
         parent::initialize($input, $output);
     }
 

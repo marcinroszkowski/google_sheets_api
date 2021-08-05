@@ -14,12 +14,13 @@ class GoogleApiService
 {
     use HelperTrait;
 
-    private const SPREADSHEET_ID = '1z446lp2SwTYE6UdIppACr0OfeF1S__YIuOyvwF4304Y';
+//    private const SPREADSHEET_ID = '1z446lp2SwTYE6UdIppACr0OfeF1S__YIuOyvwF4304Y';
     private const CLEAR_SHEET_RANGE = 'congress!A1:Z9999';
     private const SHEET_STARTING_COLUMN = 'A';
     private const SHEET_STARTING_ROW = 1;
 
     public $client;
+    public $spreadsheetId;
     public $service;
     public $readerService;
 
@@ -37,11 +38,10 @@ class GoogleApiService
 
     /**
      * Returns an authorized API client.
-     *
-     * @return Client the authorized client object
+     * @return Client
      * @throws \Google\Exception
      */
-    public function getClient()
+    public function getClient(): Client
     {
         $client = new Client();
         $client->setApplicationName('Some name');
@@ -62,12 +62,23 @@ class GoogleApiService
     }
 
     /**
+     * @param string $spreadsheetId
+     * @return $this
+     */
+    public function setSpreadsheetId(string $spreadsheetId): GoogleApiService
+    {
+        $this->spreadsheetId = $spreadsheetId;
+
+        return $this;
+    }
+
+    /**
      * @return bool
      */
-    public function clearSheet()
+    public function clearSheet(): bool
     {
         try {
-            $this->service->spreadsheets_values->clear(self::SPREADSHEET_ID, self::CLEAR_SHEET_RANGE, (new Sheets\ClearValuesRequest()));
+            $this->service->spreadsheets_values->clear($this->spreadsheetId, self::CLEAR_SHEET_RANGE, (new Sheets\ClearValuesRequest()));
         } catch (\Exception $exception) {
             return false;
         }
@@ -77,7 +88,7 @@ class GoogleApiService
     /**
      * @return bool
      */
-    public function updateSheet()
+    public function updateSheet(): bool
     {
         $data = $this->readerService->read();
         $params = ['valueInputOption' => 'RAW'];
@@ -89,7 +100,7 @@ class GoogleApiService
                 $body = new Sheets\ValueRange(['values' => $singleRowMapped]);
                 $range = $this->getRange($column, $singleRowMapped);
 
-                $this->service->spreadsheets_values->update(self::SPREADSHEET_ID, $range, $body, $params);
+                $this->service->spreadsheets_values->update($this->spreadsheetId, $range, $body, $params);
                 $column++;
             }
         } catch (\Exception $exception) {
@@ -105,7 +116,7 @@ class GoogleApiService
     public function getSpreadSheetId(): ?string
     {
         try {
-            $spreadSheetData = $this->service->spreadsheets->get(self::SPREADSHEET_ID);
+            $spreadSheetData = $this->service->spreadsheets->get($this->spreadsheetId);
 
             if (isset($spreadSheetData['sheets']) && isset($spreadSheetData['sheets'][0])) {
                 return $spreadSheetData['sheets'][0]->properties->sheetId;
