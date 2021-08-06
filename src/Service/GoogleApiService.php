@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Traits\HelperTrait;
 use Google\Client;
 use Google\Service\Sheets;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class GoogleApiService
@@ -14,7 +15,6 @@ class GoogleApiService
 {
     use HelperTrait;
 
-//    private const SPREADSHEET_ID = '1z446lp2SwTYE6UdIppACr0OfeF1S__YIuOyvwF4304Y';
     private const CLEAR_SHEET_RANGE = 'congress!A1:Z9999';
     private const SHEET_STARTING_COLUMN = 'A';
     private const SHEET_STARTING_ROW = 1;
@@ -23,17 +23,19 @@ class GoogleApiService
     public $spreadsheetId;
     public $service;
     public $readerService;
+    protected $logger;
 
     /**
      * GoogleApiService constructor.
      * @param ReaderService $readerService
      * @throws \Google\Exception
      */
-    public function __construct(ReaderService $readerService)
+    public function __construct(ReaderService $readerService, LoggerInterface $logger)
     {
         $this->client = $this->getClient();
         $this->service = $this->getService($this->client);
         $this->readerService = $readerService;
+        $this->logger = $logger;
     }
 
     /**
@@ -80,6 +82,8 @@ class GoogleApiService
         try {
             $this->service->spreadsheets_values->clear($this->spreadsheetId, self::CLEAR_SHEET_RANGE, (new Sheets\ClearValuesRequest()));
         } catch (\Exception $exception) {
+            $this->logger->error($exception->getMessage());
+
             return false;
         }
         return true;
@@ -104,6 +108,8 @@ class GoogleApiService
                 $column++;
             }
         } catch (\Exception $exception) {
+            $this->logger->error($exception->getMessage());
+
             return false;
         }
 
@@ -124,6 +130,8 @@ class GoogleApiService
 
             return null;
         } catch (\Exception $exception) {
+            $this->logger->error($exception->getMessage());
+
             return null;
         }
     }

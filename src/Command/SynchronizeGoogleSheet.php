@@ -64,8 +64,6 @@ class SynchronizeGoogleSheet extends Command
         $spreadSheetId = $this->googleApiService->getSpreadSheetId();
 
         if (!$clearSheetStatus || !$updateSheetStatus || is_null($spreadSheetId)) {
-            $output->write('An error occured!');
-
             return Command::FAILURE;
         }
 

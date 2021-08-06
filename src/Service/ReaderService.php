@@ -2,9 +2,9 @@
 
 namespace App\Service;
 
-use App\Decorators\JsonFilter;
 use App\Decorators\JsonInput;
 use App\Decorators\JsonWithoutRedundantData;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class GoogleApiService
@@ -15,18 +15,29 @@ class ReaderService
     const FILE_PATH = 'public/data';
     const FILE_NAME = 'data.json';
 
+    protected $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * @return array|null
      */
     public function read(): ?array
     {
         $filePath = $this->getFilePath();
-        $fileContentDecoded = null;
 
         try {
             $fileContent = file_get_contents($filePath);
             $fileContentDecoded = $this->filterJson($fileContent);
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
+            $this->logger->error($exception->getMessage());
+
             return null;
         }
 
@@ -47,7 +58,6 @@ class ReaderService
      */
     private function filterJson(string $fileContent): ?array
     {
-        $fileContentDecoded = null;
         try {
             /**
              * Dla uproszczenia założyłem, że string jest JSONem
@@ -58,7 +68,9 @@ class ReaderService
             $fileContentDecoded = $jsonInput->filterInput($fileContentDecoded);
             $jsonWithoutRedundantData = new JsonWithoutRedundantData($jsonInput);
             $fileContentDecoded = $jsonWithoutRedundantData->filterInput($fileContentDecoded);
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
+            $this->logger->error($exception->getMessage());
+
             return null;
         }
 
